@@ -2,7 +2,43 @@
 
 <img width="1024" height="688" alt="image" src="https://github.com/user-attachments/assets/c9ff558d-e59c-43f5-b26f-0079df01e951" />
 
+</br>
+In compliance with the requirements of the course: CpE3104-Microprocessors, we were tasked to design a microprocessor-based system of a given prompt. My team was tasked to design a uP-Based Air Conditioning (AC) Control System, which allows the user to change and view the temperature in real-time, as well as set various modes to set the AC Fan to various speeds, depending on the preference. The system also allows for the user to control the swinging of the AC System, similar to how you would in an actual one. The system also allows the user to switch between timer and thermo mode. Thermo mode has a real-time temperature reading system, while the Timer mode has a real-time countdown, expiry, and system shutdown system. A button to power the system on and off has also been implemented for easier control of the syste's operations.
+</br>
+
 <img width="1295" height="414" alt="image" src="https://github.com/user-attachments/assets/f2371707-a223-478d-abdb-dadb691fbd04" />
+
+</br>
+The system had to utilize both low-level IC's and various I/O peripherals in order for it to carry out its specific requirements. Specifically, the components used for this project were the following:
+
+<h3>MEMORY AND ADDRESS IC'S</h3>
+<ul>
+  <li>8086 Microprocessor</li>
+  <li>74LS373 Address Latch</li>
+  <li>74LS257 Data Latch</li>
+  <li>74LS138 3-8 Line Decoder</li>
+</ul>
+
+<h3>PERIPHERAL ICS</h3>
+<ul>
+  <li>8255 Programmable Peripheral Interface IC</li>
+  <li>8253 Programmable Interval Timer IC</li>
+  <li>L293D Motor Driver ICs</li>
+  <li>ADC0808 8-Lined Analog to Digital Converer IC</li>
+</ul>
+
+<h3>I/O PERIPHERALS</h3>
+<ul>
+  <li>LM044L 16x4 LCD</li>
+  <li>LM35 Temperature Sensor</li>
+  <li>Unipolar Stepper Motor</li>
+  <li>Unipolar Servo Motor</li>
+  <li>DC Motor</li>
+  <li>2-Bit Dipswitch</li>
+  <li>Tactile Push Button</li>
+</ul>
+
+</br>
 
 <h2>VERSION LOG: </h2>
 
@@ -95,5 +131,6 @@
   <li>Added in some comments for Mass Documentation</li>
   <li>COMPLETE READY FOR PROJECT DEFENSE!!!</li>
 </ul>
+
 
 
