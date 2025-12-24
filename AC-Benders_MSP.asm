@@ -432,6 +432,11 @@ CHECK_BUTTONS:
 FAN_DISPLAY:
    MOV [FAN_MODE], 1 ;Activate FAN MODE speed config for fan motor
    
+   LEA SI, CLEAR_LINE ;Clear line on LCD First
+   MOV AL, 094H
+   CALL INST_CTRL
+   CALL DISP_STR
+   
    LEA SI, DISP_FANMODE ;Display "Fan Mode" on the LCD
    MOV AL, 094H
    CALL INST_CTRL
@@ -441,6 +446,12 @@ FAN_DISPLAY:
 
 COOL_DISPLAY:
    MOV [FAN_MODE], 2 ;Activate COOL MODE speed config for fan motor
+   
+   LEA SI, CLEAR_LINE ;Clear line on LCD First
+   MOV AL, 094H
+   CALL INST_CTRL
+   CALL DISP_STR
+   
    LEA SI, DISP_COOLMODE ;Display "Cool Mode" on the LCD
    MOV AL, 094H
    CALL INST_CTRL
@@ -450,6 +461,13 @@ COOL_DISPLAY:
 
 ECO_DISPLAY:
    MOV [SUBMODE], 1 ;Activate ECO submode speed config for fan motor
+   
+   LEA SI, CLEAR_LINE ;Clear line on LCD First
+   MOV AL, 094H
+   CALL INST_CTRL
+   CALL DISP_STR
+   
+   
    LEA SI, DISP_ECOMODE  ;Display "Eco Mode" on the LCD
    MOV AL, 0D4H
    CALL INST_CTRL
@@ -459,6 +477,12 @@ ECO_DISPLAY:
 
 TURBO_DISPLAY:
    MOV [SUBMODE], 2 ;Activate TURBO submode speed config for fan motor
+   
+   LEA SI, CLEAR_LINE ;Clear line on LCD First
+   MOV AL, 094H
+   CALL INST_CTRL
+   CALL DISP_STR
+   
    LEA SI, DISP_TURBOMODE  ;Display "Turbo Mode" on the LCD
    MOV AL, 0D4H
    CALL INST_CTRL
