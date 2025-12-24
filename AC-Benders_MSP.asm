@@ -492,6 +492,8 @@ TURBO_DISPLAY:
 
 ; ================== ADC READING WITH TEMPERATURE BIT COMPARISON =====================
 
+; ================== ADC READING WITH BIT REVERSAL AND TEMPERATURE COMPARISON =====================
+
 READ_ADC_AND_COMPARE PROC
 
    ;Push in all general purpose registers
@@ -534,44 +536,68 @@ READ_ADC_AND_COMPARE PROC
     ; Step 6: Read the data from PORTC2
     MOV DX, PORTC2
     IN AL, DX
-    MOV CL, AL            ; Save ADC value in CL
+    MOV CL, AL            ; Save ADC value in CL (reversed bits)
     
-    ; ===== HARDCODED TEMPERATURE COMPARISON =====
+    ; ===== BIT REVERSAL ALGORITHM =====
+    ; Reverse the 8 bits in CL to get normal binary
+    MOV BL, 0             ; BL will hold the reversed result
+    MOV CH, 8             ; Counter for 8 bits
+
+REVERSE_LOOP:
+    SHL BL, 1             ; Shift result left to make room for next bit
+    SHR CL, 1             ; Shift input right, LSB goes to Carry Flag
+    JNC SKIP_BIT          ; If carry=0, skip setting bit
+    OR BL, 1              ; If carry=1, set the lowest bit of result
+SKIP_BIT:
+    DEC CH                ; Decrement bit counter
+    JNZ REVERSE_LOOP      ; Continue until all 8 bits processed
+
+    MOV CL, BL            ; CL now has NORMAL (un-reversed) binary value
     
-    ;NOTE: The binary values are read from right to left (due to the ADC's bit positioning)
+    ; ===== TEMPERATURE COMPARISON WITH NORMAL BINARY VALUES =====
     
-    CMP CL, 00001000B ;-> 10000 -> 16
+    ; CHECK IF BELOW 16
+    CMP CL, 16
+    JB TEMP_16            ; If below 16, display 16
+    
+    ; CHECK IF ABOVE 30
+    CMP CL, 30
+    JA TEMP_30            ; If above 30, display 30
+    
+    ; Now do exact comparisons for 16-30 range (normal decimal values)
+    CMP CL, 16
     JE TEMP_16
-    CMP CL, 10001000B ;-> 10001 -> 17
+    CMP CL, 17
     JE TEMP_17
-    CMP CL, 01001000B ;-> 10010 -> 18
+    CMP CL, 18
     JE TEMP_18
-    CMP CL, 11001000B ;-> 10011 -> 19
+    CMP CL, 19
     JE TEMP_19
-    CMP CL, 00101000B ;-> 10100 -> 20
+    CMP CL, 20
     JE TEMP_20
-    CMP CL, 10101000B ;-> 10101 -> 21
+    CMP CL, 21
     JE TEMP_21
-    CMP CL, 01101000B ;-> 10110 -> 22
+    CMP CL, 22
     JE TEMP_22
-    CMP CL, 11101000B ;-> 10111 -> 23
+    CMP CL, 23
     JE TEMP_23
-    CMP CL, 00011000B ;-> 11000 -> 24
+    CMP CL, 24
     JE TEMP_24
-    CMP CL, 10011000B ;-> 11001 -> 25
+    CMP CL, 25
     JE TEMP_25
-    CMP CL, 01011000B ;-> 11010 -> 26
+    CMP CL, 26
     JE TEMP_26
-    CMP CL, 11011000B ;-> 11011 -> 27
+    CMP CL, 27
     JE TEMP_27
-    CMP CL, 00111000B ;-> 11100 -> 28
+    CMP CL, 28
     JE TEMP_28
-    CMP CL, 10111000B ;-> 11101 -> 29
+    CMP CL, 29
     JE TEMP_29
-    CMP CL, 01111000B ;-> 11110 -> 30
+    CMP CL, 30
     JE TEMP_30
-    CMP CL, 11111000B ;-> 11111 -> 31 or greater
-    JG TEMP_30
+    
+    ; Safety fallback - if no match found, default to TEMP_16
+    JMP TEMP_16
     
 ;============= TEMPERATURE CORRESPONDENT DISPLAY LABELS =============;
 TEMP_16:
@@ -621,7 +647,7 @@ TEMP_30:
     
     
 DISPLAY_TEMP_STR:  	 ; Check if temperature changed
-    MOV AL, CL           ; CL has current ADC value (from READ_ADC_AND_COMPARE)
+    MOV AL, CL           ; CL has current ADC value (now in NORMAL format)
     CMP AL, [LAST_TEMP]
     JE SKIP_CLEAR        ; If same temp, skip clearing
     
