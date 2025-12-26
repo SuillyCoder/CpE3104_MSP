@@ -126,12 +126,12 @@ DATA SEGMENT
    SUBMODE DB 0           ; 0=None, 1=ECO, 2=TURBO
    
    ; Speed level mappings (4-bit values for upper nibble)
-   SPEED_75_RPM   EQU 0001B   ; Lowest speed  (~1.5V if 12V max)
-   SPEED_100_RPM  EQU 0010B   ; Low speed     (~3V)
-   SPEED_150_RPM  EQU 0100B   ; Medium-low    (~6V)
-   SPEED_200_RPM  EQU 0110B   ; Medium        (~7.5V)
-   SPEED_250_RPM  EQU 1000B   ; Medium-high   (~9V)
-   SPEED_300_RPM  EQU 1010B   ; High speed    (~10.5V)
+   SPEED_75_RPM   EQU 4    ; 25% duty cycle   (~3V from 12V)
+   SPEED_100_RPM  EQU 6    ; 37.5% duty cycle (~4.5V)
+   SPEED_150_RPM  EQU 8    ; 50% duty cycle   (~6V)
+   SPEED_200_RPM  EQU 10   ; 62.5% duty cycle (~7.5V)
+   SPEED_250_RPM  EQU 13   ; 81% duty cycle   (~10V)
+   SPEED_300_RPM  EQU 15   ; 100% duty cycle  (~12V max)
    
    ;======================= CURRENT DISPLAY MODE =======================
    CURRENT_DISPLAY_MODE DB 0  ; 0=TEMP, 1=TIMER (prevents flashing updates)
@@ -463,7 +463,7 @@ ECO_DISPLAY:
    MOV [SUBMODE], 1 ;Activate ECO submode speed config for fan motor
    
    LEA SI, CLEAR_LINE ;Clear line on LCD First
-   MOV AL, 094H
+   MOV AL, 0D4H
    CALL INST_CTRL
    CALL DISP_STR
    
@@ -479,7 +479,7 @@ TURBO_DISPLAY:
    MOV [SUBMODE], 2 ;Activate TURBO submode speed config for fan motor
    
    LEA SI, CLEAR_LINE ;Clear line on LCD First
-   MOV AL, 094H
+   MOV AL, 0D4H
    CALL INST_CTRL
    CALL DISP_STR
    
@@ -489,8 +489,6 @@ TURBO_DISPLAY:
    CALL DISP_STR
    CALL UPDATE_MOTOR_SPEED
    RET
-
-; ================== ADC READING WITH TEMPERATURE BIT COMPARISON =====================
 
 ; ================== ADC READING WITH BIT REVERSAL AND TEMPERATURE COMPARISON =====================
 
