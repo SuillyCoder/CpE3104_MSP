@@ -1,14 +1,14 @@
 <h1>CPE3104 MSP: AC CONTROL SYSTEM</h1>
 
-<img width="1024" height="688" alt="image" src="https://github.com/user-attachments/assets/c9ff558d-e59c-43f5-b26f-0079df01e951" />
+<img width="1083" height="651" alt="image" src="https://github.com/user-attachments/assets/afdfbbe4-80b8-429c-9dfb-cd73ed0096a1" />
 
-</br>
+<br>
 In compliance with the requirements of the course: CpE3104-Microprocessors, we were tasked to design a microprocessor-based system of a given prompt. My team was tasked to design a uP-Based Air Conditioning (AC) Control System, which allows the user to change and view the temperature in real-time, as well as set various modes to set the AC Fan to various speeds, depending on the preference. The system also allows for the user to control the swinging of the AC System, similar to how you would in an actual one. The system also allows the user to switch between timer and thermo mode. Thermo mode has a real-time temperature reading system, while the Timer mode has a real-time countdown, expiry, and system shutdown system. A button to power the system on and off has also been implemented for easier control of the syste's operations.
-</br>
+<br>
 
-<img width="1295" height="414" alt="image" src="https://github.com/user-attachments/assets/f2371707-a223-478d-abdb-dadb691fbd04" />
+<img width="1489" height="600" alt="image" src="https://github.com/user-attachments/assets/70d52a84-2679-4f6e-ba49-6950ed172090" />
 
-</br>
+<br>
 The system had to utilize both low-level IC's and various I/O peripherals in order for it to carry out its specific requirements. Specifically, the components used for this project were the following:
 
 <h3>MEMORY AND ADDRESS IC'S</h3>
@@ -124,13 +124,37 @@ The system had to utilize both low-level IC's and various I/O peripherals in ord
   <li>Added necessary labels to the necessary sections</li>
 </ul>
 
-<h3>Version 11 (Final)</h3>
+<h3>Version 11</h3>
 <img width="1325" height="410" alt="image" src="https://github.com/user-attachments/assets/7ccebd73-1521-43ce-8f23-cc8394ca4537" />
 <ul>
   <li>Fine tuned some bugs in the system</li>
   <li>Added in some comments for Mass Documentation</li>
   <li>COMPLETE READY FOR PROJECT DEFENSE!!!</li>
 </ul>
+
+<h3>Version 12</h3>
+<img width="1422" height="807" alt="image" src="https://github.com/user-attachments/assets/5e578ab5-dfd9-43fa-89be-70b265ba7676" />
+<ul>
+  <li>Revisions were needed. Didn't see this coming....</li>
+  <li>Added in a second LM35 Temperature Sensor to simulate outside temperature</li>
+  <li>Comfigured compressor motor to function in accordance with outside temp and user-set temp</li>
+  <li>Interfaced a Fourth PPI and a second ADC for such</li>
+</ul>
+
+<h3>Version 13 (FINAL)</h3>
+<img width="1500" height="441" alt="image" src="https://github.com/user-attachments/assets/d5d1edb0-e712-457c-93b1-2488baf6782f" />
+<ul>
+  <li>Adjusted fan motor behavior with mode setting</li>
+  <li>Implemented compressor shut-off with timer expiry and power button signalling</li>
+  <li>Re-organized project structure</li>
+</ul>
+
+<br>
+<h3>PROJECT COMPLETION: SUCCESS!!!</h3>
+
+
+
+
 
 
 
