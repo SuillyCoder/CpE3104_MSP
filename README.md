@@ -2,13 +2,13 @@
 
 <img width="1083" height="651" alt="image" src="https://github.com/user-attachments/assets/afdfbbe4-80b8-429c-9dfb-cd73ed0096a1" />
 
-</br>
+<br>
 In compliance with the requirements of the course: CpE3104-Microprocessors, we were tasked to design a microprocessor-based system of a given prompt. My team was tasked to design a uP-Based Air Conditioning (AC) Control System, which allows the user to change and view the temperature in real-time, as well as set various modes to set the AC Fan to various speeds, depending on the preference. The system also allows for the user to control the swinging of the AC System, similar to how you would in an actual one. The system also allows the user to switch between timer and thermo mode. Thermo mode has a real-time temperature reading system, while the Timer mode has a real-time countdown, expiry, and system shutdown system. A button to power the system on and off has also been implemented for easier control of the syste's operations.
-</br>
+<br>
 
 <img width="1489" height="600" alt="image" src="https://github.com/user-attachments/assets/70d52a84-2679-4f6e-ba49-6950ed172090" />
 
-</br>
+<br>
 The system had to utilize both low-level IC's and various I/O peripherals in order for it to carry out its specific requirements. Specifically, the components used for this project were the following:
 
 <h3>MEMORY AND ADDRESS IC'S</h3>
@@ -149,8 +149,9 @@ The system had to utilize both low-level IC's and various I/O peripherals in ord
   <li>Re-organized project structure</li>
 </ul>
 
-</br>
+<br>
 <h3>PROJECT COMPLETION: SUCCESS!!!</h3>
+
 
 
 
